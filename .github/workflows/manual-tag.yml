@@ -19,6 +19,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Set git user
+      run: |
+        git config user.email "action@github.com"
+        git config user.name "GitHub Action"
+
     - name: Create tag
       run: |
         git tag -a ${{ github.event.inputs.tag_name }} -m "${{ github.event.inputs.tag_message }}"
