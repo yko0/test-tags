@@ -1,23 +1,13 @@
 name: Manually Triggered Tagging
 
-on:
-  workflow_dispatch:
-    inputs:
-      tag_name:
-        description: 'Tag Name'
-        required: true
-        default: 'v1.0.0'
-      tag_message:
-        description: 'Tag Message'
-        required: true
-        default: 'Release v1.0.0'
+on: workflow_dispatch
 
 jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - name: Bump version
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.1
       with:
